@@ -1,0 +1,57 @@
+﻿@page "/wordCloud"
+@using EstdCoReportApp.Application.Domain;
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject HttpClient Http
+
+<PageTitle>ابر کلمات</PageTitle>
+
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">ابر کلمات!</h4>
+    <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+    <hr>
+    <p class="mb-0">ابر کلمات با استفاده از دیتای موجود در سایت https://kifpool.me/</p>
+</div>
+
+
+@if (wordCloudImage == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <img src="@wordCloudImage" />
+}
+
+@code {
+    private string? wordCloudImage;
+    private HubConnection? _dataHubConnection;
+    private async Task StartHubConnection()
+    {
+        var apiAddress = "https://localhost:7119";
+
+
+        var sensorDataUrl = ($"{apiAddress}/wordCloud");
+        _dataHubConnection = new HubConnectionBuilder()
+                        .WithUrl(sensorDataUrl)
+                        .Build();
+
+
+        await _dataHubConnection.StartAsync();
+    }
+    private void SetRefreshDataListener()
+    {
+        var methodName = "TransferWordCloudData";
+
+
+        _dataHubConnection.On<string>(methodName, (data) =>
+        {
+            wordCloudImage = "data:image/png;base64," + data;
+            StateHasChanged();
+        });
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await StartHubConnection();
+        SetRefreshDataListener();
+    }
+}

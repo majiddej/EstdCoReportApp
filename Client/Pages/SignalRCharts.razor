@@ -1,0 +1,237 @@
+﻿@page "/signalRCharts"
+@using EstdCoReportApp.Application.Domain;
+@using Microsoft.AspNetCore.SignalR.Client;
+@using System.Globalization;
+@inject HttpClient Http
+
+<PageTitle>Charts</PageTitle>
+
+<h1>signalR Charts</h1>
+
+<p>This component demonstrates fetching Real Time data from the server.</p>
+
+@if (Data == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+    <div class="col-md-6 p-4">
+        <RadzenChart>
+            <RadzenColumnSeries Data="@Data" CategoryProperty="Label" Title="Product Views"
+                LineType="LineType.Dashed" ValueProperty="Value" Fill="green" />
+            <RadzenColumnOptions Radius="5" />
+            <RadzenValueAxis>
+                <RadzenGridLines Visible="true" />
+                <RadzenAxisTitle Text="Product views" />
+            </RadzenValueAxis>
+        </RadzenChart>
+    </div>
+    <div class="col-md-6 p-4">
+        <RadzenChart>
+                <RadzenLineSeries Smooth="@smooth" Data="@revenue2019" CategoryProperty="Date" 
+                    Title="2022" LineType="LineType.Dashed" ValueProperty="Revenue">
+                    <RadzenMarkers MarkerType="MarkerType.Square" />
+                    <RadzenSeriesDataLabels Visible="false" />
+                </RadzenLineSeries>
+                <RadzenLineSeries Smooth="@smooth" Data="@revenue2020" CategoryProperty="Date" 
+                    Title="2023" ValueProperty="Revenue">
+                    <RadzenMarkers MarkerType="MarkerType.Circle" />
+                    <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                </RadzenLineSeries>
+                <RadzenCategoryAxis Padding="20" Formatter="@FormatAsMonth" />
+                <RadzenValueAxis Formatter="@FormatAsUSD">
+                        <RadzenGridLines Visible="@showDataLabels" />
+                    <RadzenAxisTitle Text="Revenue in USD" />
+                </RadzenValueAxis>
+            </RadzenChart>
+    </div>
+</div>
+}
+
+@code {
+    class DataItem
+    {
+        public string Date { get; set; }
+        public double Revenue { get; set; }
+    }
+
+    private List<ChartData>? Data;
+    private bool smooth = true;
+    private bool showMarkers = true;
+    bool showDataLabels = false;
+
+    private HubConnection? _reportDataHubConnection;
+    private async Task StartHubConnection()
+    {
+        var apiAddress = "https://localhost:7119";
+
+
+        var sensorDataUrl = ($"{apiAddress}/charts");
+        _reportDataHubConnection = new HubConnectionBuilder()
+                        .WithUrl(sensorDataUrl)
+                        .Build();
+
+
+        await _reportDataHubConnection.StartAsync();
+    }
+    private void SetRefreshDataListener()
+    {
+        var methodName = "TransferChartData";
+
+
+        _reportDataHubConnection.On<List<ChartData>>(methodName, (data) =>
+        {
+            Data = data;
+            StateHasChanged();
+        });
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await StartHubConnection();
+        SetRefreshDataListener();
+    }
+
+
+
+    string FormatAsUSD(object value)
+    {
+        return ((double)value).ToString("C0", CultureInfo.CreateSpecificCulture("en-US"));
+    }
+
+    string FormatAsMonth(object value)
+    {
+        if (value != null)
+        {
+            return Convert.ToDateTime(value).ToString("MMM");
+        }
+
+        return string.Empty;
+    }
+    DataItem[] revenue2019 = new DataItem[] {
+        new DataItem
+        {
+            Date = ("2022-01-01"),
+            Revenue = 234000
+        },
+        new DataItem
+        {
+            Date = ("2022-02-01"),
+            Revenue = 269000
+        },
+        new DataItem
+        {
+            Date = ("2022-03-01"),
+            Revenue = 233000
+        },
+        new DataItem
+        {
+            Date = ("2022-04-01"),
+            Revenue = 244000
+        },
+        new DataItem
+        {
+            Date = ("2022-05-01"),
+            Revenue = 214000
+        },
+        new DataItem
+        {
+            Date = ("2022-06-01"),
+            Revenue = 253000
+        },
+        new DataItem
+        {
+            Date = ("2022-07-01"),
+            Revenue = 274000
+        },
+        new DataItem
+        {
+            Date = ("2022-08-01"),
+            Revenue = 284000
+        },
+        new DataItem
+        {
+            Date = ("2022-09-01"),
+            Revenue = 273000
+        },
+        new DataItem
+        {
+            Date = ("2022-10-01"),
+            Revenue = 282000
+        },
+        new DataItem
+        {
+            Date = ("2022-11-01"),
+            Revenue = 289000
+        },
+        new DataItem
+        {
+            Date = ("2022-12-01"),
+            Revenue = 294000
+        }
+    };
+
+    DataItem[] revenue2020 = new DataItem[] {
+        new DataItem
+        {
+            Date = ("2022-01-01"),
+            Revenue = 334000
+        },
+        new DataItem
+        {
+            Date = ("2022-02-01"),
+            Revenue = 369000
+        },
+        new DataItem
+        {
+            Date = ("2022-03-01"),
+            Revenue = 333000
+        },
+        new DataItem
+        {
+            Date = ("2022-04-01"),
+            Revenue = 344000
+        },
+        new DataItem
+        {
+            Date = ("2022-05-01"),
+            Revenue = 314000
+        },
+        new DataItem
+        {
+            Date = ("2022-06-01"),
+            Revenue = 353000
+        },
+        new DataItem
+        {
+            Date = ("2022-07-01"),
+            Revenue = 374000
+        },
+        new DataItem
+        {
+            Date = ("2022-08-01"),
+            Revenue = 384000
+        },
+        new DataItem
+        {
+            Date = ("2022-09-01"),
+            Revenue = 373000
+        },
+        new DataItem
+        {
+            Date = ("2022-10-01"),
+            Revenue = 382000
+        },
+        new DataItem
+        {
+            Date = ("2022-11-01"),
+            Revenue = 389000
+        },
+        new DataItem
+        {
+            Date = ("2022-12-01"),
+            Revenue = 394000
+        }
+    };
+}

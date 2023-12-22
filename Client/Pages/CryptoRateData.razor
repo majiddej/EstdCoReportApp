@@ -1,0 +1,71 @@
+﻿@page "/cryptoRateData"
+@using EstdCoReportApp.Application.Domain;
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject HttpClient Http
+
+<PageTitle>Report Data</PageTitle>
+
+<h1>Report Data</h1>
+
+<p>This component demonstrates fetching Real Time data from the server.</p>
+
+@if (reports == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in reports)
+            {
+                <tr>
+                    <td>@forecast.time.ToShortDateString()</td>
+                    <td>@forecast.rate</td>
+                    <td>@forecast.asset_id_quote</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<CryptoRate>? reports;
+    private HubConnection? _reportDataHubConnection;
+    private async Task StartHubConnection()
+    {
+        var apiAddress = "https://localhost:7119";
+
+
+        var sensorDataUrl = ($"{apiAddress}/cryptoRates");
+        _reportDataHubConnection = new HubConnectionBuilder()
+                        .WithUrl(sensorDataUrl)
+                        .Build();
+
+
+        await _reportDataHubConnection.StartAsync();
+    }
+    private void SetRefreshDataListener()
+    {
+        var methodName = "TransferCryptoRateData";
+
+
+        _reportDataHubConnection.On<List<CryptoRate>>(methodName, (data) =>
+        {
+            reports = data;
+            StateHasChanged();
+        });
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await StartHubConnection();
+        SetRefreshDataListener();
+    }
+}
