@@ -3,11 +3,16 @@
 @using Microsoft.AspNetCore.SignalR.Client;
 @inject HttpClient Http
 
-<PageTitle>Report Data</PageTitle>
+<PageTitle>نرخ لحظه ای رمز ارز</PageTitle>
 
-<h1>Report Data</h1>
-
-<p>This component demonstrates fetching Real Time data from the server.</p>
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">نرخ لحظه ای رمز ارز!</h4>
+    <p>نرخ لحظه ای رمز ارز ها که که هر 60 ثانیه به روز می گردند</p>
+    <hr>
+    <p class="mb-0">داده ها از وب سرویس سایت
+        <a href="https://rest.coinapi.io">https://rest.coinapi.io</a>
+        دریافت میگردد و به جهت رایگان بودن سرویس، محدودیت روزانه 100 درخواست را دارد.</p>
+</div>
 
 @if (reports == null)
 {
@@ -19,7 +24,7 @@ else
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Id</th>
+                <th>Price</th>
                 <th>Name</th>
             </tr>
         </thead>

@@ -6,11 +6,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstdCoReportApp.Server", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstdCoReportApp.Client", "Client\EstdCoReportApp.Client.csproj", "{DBA97E73-7369-4ADE-AB5F-9D65DF4E7D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstdCoReportApp.Application.Domain", "EstdCoReportApp.Application.Domain\EstdCoReportApp.Application.Domain.csproj", "{3B928451-2FDC-40D4-8E5F-2E73562A5ADA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstdCoReportApp.Application.Domain", "EstdCoReportApp.Application.Domain\EstdCoReportApp.Application.Domain.csproj", "{3B928451-2FDC-40D4-8E5F-2E73562A5ADA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstdCoReportApp.Application.Contract", "EstdCoReportApp.Application.Contract\EstdCoReportApp.Application.Contract.csproj", "{D252495E-43CE-4BCE-B990-D6B640C6D191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstdCoReportApp.Application.Contract", "EstdCoReportApp.Application.Contract\EstdCoReportApp.Application.Contract.csproj", "{D252495E-43CE-4BCE-B990-D6B640C6D191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstdCoReportApp.Application", "EstdCoReportApp.Application\EstdCoReportApp.Application.csproj", "{1D613470-22AA-4A72-A255-EF365707D503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstdCoReportApp.Application", "EstdCoReportApp.Application\EstdCoReportApp.Application.csproj", "{1D613470-22AA-4A72-A255-EF365707D503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstdCoReportApp.Repository", "EstdCoReportApp.Repository\EstdCoReportApp.Repository.csproj", "{1BAE1F46-782F-4E60-BB87-EDE1071B312D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,18 @@ Global
 		{1D613470-22AA-4A72-A255-EF365707D503}.Release|x64.Build.0 = Release|Any CPU
 		{1D613470-22AA-4A72-A255-EF365707D503}.Release|x86.ActiveCfg = Release|Any CPU
 		{1D613470-22AA-4A72-A255-EF365707D503}.Release|x86.Build.0 = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|x64.Build.0 = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Debug|x86.Build.0 = Debug|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|x64.ActiveCfg = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|x64.Build.0 = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|x86.ActiveCfg = Release|Any CPU
+		{1BAE1F46-782F-4E60-BB87-EDE1071B312D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

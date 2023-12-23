@@ -4,12 +4,14 @@
 @using System.Globalization;
 @inject HttpClient Http
 
-<PageTitle>Charts</PageTitle>
+<PageTitle>نمودار لخظه ای</PageTitle>
 
-<h1>signalR Charts</h1>
-
-<p>This component demonstrates fetching Real Time data from the server.</p>
-
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">نمودار لخظه ای!</h4>
+    <p>این نمودار ها  با استفاده از داده های موجود در دیتابیس یا دریافت شده از یک وب سرویس به صورت لحظه رسم می گردند.</p>
+    <hr>
+    <p class="mb-0">داده ها تستی می باشند.</p>
+</div>
 @if (Data == null)
 {
     <p><em>Loading...</em></p>

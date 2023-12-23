@@ -3,11 +3,14 @@
 @using Microsoft.AspNetCore.SignalR.Client;
 @inject HttpClient Http
 
-<PageTitle>Report Data</PageTitle>
+<PageTitle>جدول با اطلاعات لحظه ای</PageTitle>
 
-<h1>Report Data</h1>
-
-<p>This component demonstrates fetching Real Time data from the server.</p>
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">جدول با اطلاعات لحظه ای!</h4>
+    <p>این اطلاعات  با استفاده از داده های تصادفی به صورت لحظه به روز رسانی می گردند.</p>
+    <hr>
+    <p class="mb-0">داده ها تصادفی می باشند.</p>
+</div>
 
 @if (reports == null)
 {

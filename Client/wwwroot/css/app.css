@@ -1,9 +1,17 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Vazirmatn RD FD';
 }
 
+@font-face {
+    font-family: 'Vazirmatn RD FD';
+    src: url(../fonts/IRANSansWeb_Bold.ttf);
+}
+.side-nav-logo{
+    color:white;
+    text-align:center;
+}
 h1:focus {
     outline: none;
 }
