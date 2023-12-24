@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace EstdCoReportApp.Server.Hubs
 {
-    public class CryptoRateHub : Hub<List<CryptoRate>> 
+    public class CryptoRateHub : Hub<List<CryptoRate>>
     {
         private readonly IMemoryCache _memoryCache;
         IHubContext<CryptoRateHub> _reportHub;
@@ -25,15 +25,28 @@ namespace EstdCoReportApp.Server.Hubs
                     methodName,
                     cacheData);
         }
+        public void SendDataToClient(string connectionId)
+        {
+            var cacheData = _memoryCache.Get<IEnumerable<CryptoRate>>("cryptoRates");
+            var cacheData1 = _memoryCache.Get<CryptoRate>("mostVolatileCrypto");
+
+            _reportHub.Clients.Client(connectionId).SendAsync(
+                    methodName,
+                    cacheData);
+
+            _reportHub.Clients.Client(connectionId).SendAsync(
+        "TransferMostVolatileCryptoData",
+        cacheData1);
+
+        }
         public override Task OnConnectedAsync()
         {
-            SendDataToAllClient();
-
+            SendDataToClient(Context.ConnectionId);
             return base.OnConnectedAsync();
         }
         public async Task SendMessage(string message)
         {
-            
+
         }
     }
 }

@@ -20,10 +20,16 @@ namespace EstdCoReportApp.Application
             var r = new Random();
             return new List<ChartData>()
         {
-            new ChartData { Value = r.Next(1, 40), Label = "Wall Clock" },
-            new ChartData { Value = r.Next(1, 40), Label = "Fitted T-Shirt" },
-            new ChartData { Value = r.Next(1, 40), Label = "Tall Mug" },
-            new ChartData { Value = r.Next(1, 40), Label = "Pullover Hoodie" }
+            new ChartData { Value = r.Next(1, 40), Label = "Ethereum" },
+            new ChartData { Value = r.Next(1, 40), Label = "Tether" },
+            new ChartData { Value = r.Next(1, 40), Label = "Binance Coin" },
+            new ChartData { Value = r.Next(1, 40), Label = "Ripple" },
+            new ChartData { Value = r.Next(1, 40), Label = "Cardano" },
+            new ChartData { Value = r.Next(1, 40), Label = "Dogecoin" },
+            new ChartData { Value = r.Next(1, 40), Label = "Solana" },
+            new ChartData { Value = r.Next(1, 40), Label = "Litecoin" },
+            new ChartData { Value = r.Next(1, 40), Label = "Tron" },
+            new ChartData { Value = r.Next(1, 40), Label = "Shiba Inu" },
         };
         }
     }

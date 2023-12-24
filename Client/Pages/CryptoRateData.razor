@@ -9,9 +9,11 @@
     <h4 class="alert-heading">نرخ لحظه ای رمز ارز!</h4>
     <p>نرخ لحظه ای رمز ارز ها که که هر 60 ثانیه به روز می گردند</p>
     <hr>
-    <p class="mb-0">داده ها از وب سرویس سایت
+    <p class="mb-0">
+        داده ها از وب سرویس سایت
         <a href="https://rest.coinapi.io">https://rest.coinapi.io</a>
-        دریافت میگردد و به جهت رایگان بودن سرویس، محدودیت روزانه 100 درخواست را دارد.</p>
+        دریافت میگردد و به جهت رایگان بودن سرویس، محدودیت روزانه 100 درخواست را دارد.
+    </p>
 </div>
 
 @if (reports == null)
@@ -20,6 +22,19 @@
 }
 else
 {
+
+    <div>
+        <p>
+            <span>بیشترین نوسان: </span>
+            @if (mostVolatileCryptoData == null)
+            {
+            <p><em>در حال بررسی...</em></p>
+            }else
+            {
+                <span>@mostVolatileCryptoData.asset_id_quote</span>
+            }
+        </p>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -43,6 +58,7 @@ else
 
 @code {
     private List<CryptoRate>? reports;
+    private CryptoRate? mostVolatileCryptoData;
     private HubConnection? _reportDataHubConnection;
     private async Task StartHubConnection()
     {
@@ -59,12 +75,14 @@ else
     }
     private void SetRefreshDataListener()
     {
-        var methodName = "TransferCryptoRateData";
-
-
-        _reportDataHubConnection.On<List<CryptoRate>>(methodName, (data) =>
+        _reportDataHubConnection.On<List<CryptoRate>>("TransferCryptoRateData", (data) =>
         {
             reports = data;
+            StateHasChanged();
+        });
+        _reportDataHubConnection.On<CryptoRate>("TransferMostVolatileCryptoData", (data) =>
+        {
+            mostVolatileCryptoData = data;
             StateHasChanged();
         });
     }

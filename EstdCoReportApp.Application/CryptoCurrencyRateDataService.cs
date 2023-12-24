@@ -17,7 +17,9 @@ namespace EstdCoReportApp.Application
             //List<Rate> data = //JsonConvert.DeserializeObject<List<Rate>>(jsonData);
             var response = await _httpClientHelperAsync.GetAsync<CryptoData>("v1/exchangerate/BTC", null);
 
-
+            foreach (var item in response.rates) {
+                item.Id = Guid.NewGuid().ToString();
+            }
             return response.rates;
         }
 

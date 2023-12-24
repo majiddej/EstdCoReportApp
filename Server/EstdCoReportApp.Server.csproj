@@ -9,6 +9,12 @@
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.56" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -17,6 +23,7 @@
     <ProjectReference Include="..\EstdCoReportApp.Application.Contract\EstdCoReportApp.Application.Contract.csproj" />
     <ProjectReference Include="..\EstdCoReportApp.Application.Domain\EstdCoReportApp.Application.Domain.csproj" />
     <ProjectReference Include="..\EstdCoReportApp.Application\EstdCoReportApp.Application.csproj" />
+    <ProjectReference Include="..\EstdCoReportApp.Repository\EstdCoReportApp.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

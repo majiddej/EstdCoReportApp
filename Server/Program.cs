@@ -1,9 +1,12 @@
 using EstdCoReportApp.Application;
 using EstdCoReportApp.Application.Contract;
 using EstdCoReportApp.Application.HttpClient;
+using EstdCoReportApp.Repository.Sqlite;
 using EstdCoReportApp.Server.Hubs;
 using EstdCoReportApp.Server.Workers;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,15 +16,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 builder.Services.AddMemoryCache();
-
-builder.Services.AddTransient<IReportDataService, ReportDataService>();
-builder.Services.AddTransient<ICryptoCurrencyRateDataService, CryptoCurrencyRateDataService>();
-builder.Services.AddTransient<IWordCloudDataService, WordCloudDataService>();
-builder.Services.AddHostedService<ReportDataWorker>();
-//builder.Services.AddHostedService<CryproRateDataWorker>();
-builder.Services.AddHostedService<ChartDataWorker>();
-builder.Services.AddHostedService<WordCloudDataWorker>();
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlite("Data Source=crypto.db");
+});
 
 var httpClient = builder.Services.AddHttpClient("ETC", client =>
 {
@@ -33,6 +31,21 @@ var httpClient = builder.Services.AddHttpClient("ETC", client =>
 });
 
 builder.Services.AddSingleton<IHttpClientHelperAsync, HttpClientHelperAsync>();
+
+
+
+builder.Services.AddTransient<IReportDataService, ReportDataService>();
+builder.Services.AddTransient<ICryptoCurrencyRateDataService, CryptoCurrencyRateDataService>();
+builder.Services.AddTransient<IWordCloudDataService, WordCloudDataService>();
+builder.Services.AddHostedService<ReportDataWorker>();
+builder.Services.AddHostedService<CryproRateDataWorker>();
+builder.Services.AddHostedService<ChartDataWorker>();
+builder.Services.AddHostedService<WordCloudDataWorker>();
+builder.Services.AddHostedService<MostVolatileCryptoDataWorker>();
+
+
+
+
 
 
 

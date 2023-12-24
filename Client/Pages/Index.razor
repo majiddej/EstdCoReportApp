@@ -1,9 +1,77 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>خانه</PageTitle>
 
-<h1>Hello, world!</h1>
+<section>
+    <h2>1. مقدمه</h2>
+    <p>توضیحات شما درباره بخش مقدمه.</p>
+</section>
 
-Welcome to your new app.
+<section>
+    <h2>2. معماری سامانه</h2>
+    <p>
+        این سامانه با استفاده از تکنولوژیBlazor WebAssembly ایجاد شده است.
+        Blazor WebAssembly
+        برنامه‌ی تحت وب می باشد که اجازه اجرای کد سی شارپ در مرورگر را می‌دهد
+    </p>
+    <p>
+        سامانه از دو قسمت کلی تشکیل شده است:
+    </p>
+    <h3>2.1. کلاینت</h3>
+    <ul>
+        <li><strong>SignalR Integration:</strong>برای ارسال داده‌های لحظه‌ای و به روزرسانی‌ها، از SignalR برای برقراری ارتباط دائمی با سرور استفاده می‌شود.</li>
+    </ul>
+    <h3>2.2. سرور</h3>
+    <ul>
+        <li><strong>Web API:</strong>جهت ارتباط با دیتابیس و سرویس‌های خارجی مانند دریافت اطلاعات قیمت رمز ارزها و بررسی وب‌سایت‌ها، از وب API استفاده می‌شود.</li>
+        <li><strong>MongoDB Integration:</strong>برای ذخیره اطلاعات در دیتابیس NoSQL، از MongoDB به عنوان یک دیتابیس مناسب و مقیاس‌پذیر استفاده می‌شود.</li>
+        <li><strong>Scheduled Jobs:</strong>اجرای وظایف زمان‌بندی شده برای به‌روزرسانی اطلاعات به صورت دوره‌ای.</li>
+        <li>
+            <strong>Web Scraping:</strong> برای بررسی وب‌سایت و استخراج متن از آن از تکنولوژی Web Scraping استفاده می‌شود.
+            قابلیت ذخیره داده ها در دیتابیس NoSql مانند MongoDb
+        </li>
+        <li><strong>Scalability:</strong>استفاده از دیتابیس NoSQL MongoDB برای مقیاس‌پذیری بهتر.</li>
+        <li><strong>Efficiency:</strong>استفاده از دیتابیسکارایی بالا در ارسال اطلاعات به تعداد زیاد بازدیدکنندگان.</li>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    </ul>
+</section>
+
+<section>
+    <h2>3. امکانات سامانه</h2>
+
+    <h3>3.1. نمایش لحظه‌ای نمودارها با SignalR</h3>
+    <ul>
+        <li><strong>Chart Component:</strong> استفاده از کامپوننت‌های گرافیکی برای نمایش لحظه‌ای نمودارها.</li>
+        <li><strong>Real-Time Updates:</strong> ارسال به‌روزرسانی‌ها به کلاینت‌ها از طریق SignalR جهت به‌روزرسانی نمودارها به صورت لحظه‌ای.</li>
+    </ul>
+
+    <h3>3.2. دریافت اطلاعات قیمت رمز ارزها</h3>
+    <ul>
+        امکان به‌روزرسانی لحظه‌ای اطلاعات برای کاربران.
+    </ul>
+
+    <h3>3.3. ایجاد Word Cloud از وب‌سایت و نمایش تصویر</h3>
+    <ul>
+        Web Scraping: برای بررسی وب‌سایت و استخراج متن از آن از تکنولوژی Web Scraping استفاده می‌شود.
+        قابلیت ذخیره داده ها در دیتابیس NoSql مانند MongoDb
+    </ul>
+    <ul>
+        Image Rendering: تصویر ساخته‌شده از Word Cloud به کاربران نمایش داده شده و امکان دانلود تصویر فراهم می‌شود.
+    </ul>
+    <h3>3.4. دریافت اطلاعات وب‌سایت‌ها و ذخیره در MongoDB</h3>
+    <ul>
+        <!-- افزودن توضیحات برای بخش اطلاعات وب‌سایت و MongoDB -->
+    </ul>
+</section>
+
+@*<section>
+    <h2>4. مزایا</h2>
+    <ul>
+        <li><strong>Real-Time Updates:</strong> توضیحات درباره به‌روزرسانی‌های لحظه‌ای.</li>
+        <li><strong>Scalability:</strong></li>
+        <li><strong>Efficiency:</strong> توضیحات درباره کارایی.</li>
+    </ul>
+</section>*@
+
+
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@

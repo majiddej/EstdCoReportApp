@@ -1,7 +1,7 @@
 ﻿using EstdCoReportApp.Application.Domain;
 using MongoDB.Driver;
 
-namespace EstdCoReportApp.Repository
+namespace EstdCoReportApp.Repository.MongoDb
 {
     public class MongoDbDataRepository<T>
     {
@@ -23,9 +23,9 @@ namespace EstdCoReportApp.Repository
             return entities;
         }
 
-        // Add more CRUD operations as needed
 
-        // For example:
+
+
         // public async Task<T> GetByIdAsync(string id)
         // {
         //     var entity = await _collection.Find(Builders<T>.Filter.Eq("_id", id)).FirstOrDefaultAsync();

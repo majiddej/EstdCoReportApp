@@ -25,10 +25,18 @@ namespace EstdCoReportApp.Server.Hubs
                     methodName,
                     cacheData);
         }
+        public void SendDataToClient(string connectionId)
+        {
+            var cacheData = _memoryCache.Get<string>("wordCloudImage");
+
+            _reportHub.Clients.Client(connectionId).SendAsync(
+                    methodName,
+                    cacheData);
+        }
         public override Task OnConnectedAsync()
         {
-            //TODO Get ConnectionId And Send Last Data Just To The New Connected Id
-            SendDataToAllClient();
+            
+            SendDataToClient(Context.ConnectionId);
 
             return base.OnConnectedAsync();
         }
